@@ -30,12 +30,12 @@ const FieldWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  background-color: ${(props) => props.theme.colors.gray[800]};
   padding: 10px;
   border-radius: 3px;
   overflow: hidden;
+  &,
   input {
-    background-color: ${(props) => props.theme.colors.gray[800]};
+    background-color: ${(props) => props.theme.colors.gray[700]};
     color: ${(props) => props.theme.colors.gray[100]};
   }
 
