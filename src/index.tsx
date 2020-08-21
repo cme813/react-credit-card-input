@@ -30,10 +30,14 @@ const FieldWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.gray[800]};
   padding: 10px;
   border-radius: 3px;
   overflow: hidden;
+  input {
+    background-color: ${(props) => props.theme.colors.gray[800]};
+    color: ${(props) => props.theme.colors.gray[100]};
+  }
 
   &.is-invalid {
     border: 1px solid ${(props) => props.theme.colors.red[500]};
