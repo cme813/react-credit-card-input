@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import styled from 'styled-components';
+import styled from './utils/styled';
 import CreditCardInput from '.';
 import './index.stories.css';
 

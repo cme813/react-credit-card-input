@@ -8,16 +8,16 @@ const ERROR_TEXT__DATE_OUT_OF_RANGE = 'Expiry date cannot be in the past';
 const EXPIRY_DATE_REGEX = /^(\d{2})\/(\d{4}|\d{2})$/;
 const MONTH_REGEX = /(0[1-9]|1[0-2])/;
 
-type CustomExpiryErrorTexts = {
-  invalidExpiryDate?: string,
-  monthOutOfRange?: string,
-  yearOutOfRange?: string,
-  dateOutOfRange?: string
-};
+interface CustomExpiryErrorTexts {
+  invalidExpiryDate?: string;
+  monthOutOfRange?: string;
+  yearOutOfRange?: string;
+  dateOutOfRange?: string;
+}
 
 export default (
   expiryDate: string,
-  customExpiryErrorTexts?: CustomExpiryErrorTexts = {}
+  customExpiryErrorTexts: CustomExpiryErrorTexts = {}
 ) => {
   const splitDate = expiryDate.split('/');
   if (!EXPIRY_DATE_REGEX.test(expiryDate)) {
@@ -39,9 +39,12 @@ export default (
   let currentYear = date.getFullYear();
   let currentMonth = date.getMonth() + 1;
   currentYear = parseInt(
-    expiryYear.length === 4 ? currentYear : currentYear.toString().substr(-2),
+    expiryYear.length === 4
+      ? currentYear.toString()
+      : currentYear.toString().substr(-2),
     10
   );
+
   if (currentYear > parseInt(expiryYear, 10)) {
     return (
       customExpiryErrorTexts.yearOutOfRange || ERROR_TEXT__YEAR_OUT_OF_RANGE

@@ -1,33 +1,18 @@
-import babel from 'rollup-plugin-babel';
+import typescript from '@rollup/plugin-typescript';
 
 export default {
-  input: `${__dirname}/src/index.js`,
+  input: `${__dirname}/src/index.tsx`,
   output: {
     name: 'CreditCardInput',
-    file: `${__dirname}/lib/index.js`,
+    dir: 'lib',
     format: 'umd',
     globals: {
       react: 'React',
       payment: 'payment',
       'credit-card-type': 'creditCardType',
-      'styled-components': 'styled'
-    }
+      'styled-components': 'styled',
+    },
   },
-  sourcemap: true,
-  external: [
-    'react',
-    'credit-card-type',
-    'payment',
-    'styled-components'
-  ],
-  plugins: [
-    babel({
-      presets: [['env', { modules: false }], 'react', 'flow'],
-      plugins: [
-        'external-helpers',
-        'transform-class-properties',
-        'transform-object-rest-spread'
-      ]
-    })
-  ]
+  external: ['react', 'credit-card-type', 'payment', 'styled-components'],
+  plugins: [typescript({ declaration: true, outDir: 'lib' })],
 };
